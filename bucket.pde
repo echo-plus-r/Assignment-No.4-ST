@@ -3,13 +3,13 @@ class bucket{
   // i'll likely have to add hitboxes to this calculation
   PVector position;
   boolean moveLeft;
-  PImage BuckSprite;
+  
   
   bucket(){
-    position = new PVector(0, 590);
+    position = new PVector(0, 500);
     moveLeft = false;
     
-    BuckSprite = loadImage("bucket.png");
+    //BuckSprite = loadImage("bucket.png");
   }
   
   void show(){
