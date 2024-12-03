@@ -27,7 +27,7 @@ class bucket{
     else{
       pos.x += 1;
     }
-    if(pos.x > 375){
+    if(pos.x > width - BuckWidth){
       moveLeft = true;
     }
     if(pos.x < 0){
