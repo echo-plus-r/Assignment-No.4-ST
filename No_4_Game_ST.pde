@@ -13,4 +13,5 @@ void setup(){
 void draw(){
   rect(0, 0, width, height);
   buck.show();
+  buck.move();
 }
