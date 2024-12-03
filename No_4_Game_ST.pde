@@ -6,11 +6,14 @@ notes: hello
 */
 
 bucket buck = new bucket();
+target targ = new target();
 PImage BuckSprite;
+PImage TargetWood;
 
 void setup(){
   size(400, 600);
   BuckSprite = loadImage("bucket-good.png");
+  TargetWood = loadImage("target-wood-good.png");
   noStroke();
 }
 
@@ -19,7 +22,7 @@ void draw(){
   // functions as the background
   rect(0, 0, width, height);
   
-  buck.show();
   buck.move();
-  
+  buck.show();  
+  targ.show();
 }
