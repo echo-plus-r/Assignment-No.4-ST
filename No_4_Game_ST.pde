@@ -6,7 +6,7 @@ notes: hello
 */
 
 bucket buck = new bucket();
-target targ = new target();
+target targ = new target(1);
 PImage BuckSprite;
 PImage TargetWood;
 

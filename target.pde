@@ -10,13 +10,18 @@ class target{
   // siz holds the width and height of the targets (they're all just cubes)
   float siz;
   
-  target(){
+  target(int TargetType){
     pos = new PVector(10, 10);
+    type = TargetType;
   }
   
   // show displays the target
   void show(){
-    image(TargetWood, pos.x, pos.y);
+    switch(type){
+      case 1:
+        image(TargetWood, pos.x, pos.y);
+        break;
+    }
   }
   
   // move changes the target's position depending on it's type.
