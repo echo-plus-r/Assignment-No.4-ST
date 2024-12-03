@@ -6,10 +6,8 @@ class bucket{
   
   
   bucket(){
-    pos = new PVector(0, 500);
+    pos = new PVector(0, 550);
     moveLeft = false;
-    
-    //BuckSprite = loadImage("bucket.png");
   }
   
   void show(){
@@ -23,7 +21,7 @@ class bucket{
     else{
       pos.x += 1;
     }
-    if(pos.x > 400){
+    if(pos.x > 375){
       moveLeft = true;
     }
     if(pos.x < 0){

@@ -7,11 +7,15 @@ PImage BuckSprite;
 
 void setup(){
   size(400, 600);
-  BuckSprite = loadImage("bucket.png");
+  BuckSprite = loadImage("bucket-good.png");
 }
 
 void draw(){
-  rect(0, 0, width, height);
+  
+  // functions as the background
+  rect(-1, -1, width, height);
+  
   buck.show();
   buck.move();
+  
 }
