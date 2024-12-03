@@ -2,7 +2,7 @@
 project: object oriented target game
 coder: Simon. T
 date: 2024-12-3
-notes: hi
+notes: testing...
 */
 
 bucket buck = new bucket();
