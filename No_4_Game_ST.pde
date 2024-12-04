@@ -13,7 +13,7 @@ PImage TargetWood;
 void setup(){
   size(400, 600);
   BuckSprite = loadImage("bucket-good.png");
-  TargetWood = loadImage("target-wood-good.png");
+  TargetWood = loadImage("Target-Wood-Big.png");
   noStroke();
 }
 
