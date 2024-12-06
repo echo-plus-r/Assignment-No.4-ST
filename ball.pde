@@ -12,7 +12,8 @@ class ball{
   
   ball(){
     pos = new PVector(180, 480);
-    vel = new PVector(2, -2);
+    vel = new PVector(3, -1);
+    siz = 20;
     
     // CHANGE THIS LATER
     active = true;
