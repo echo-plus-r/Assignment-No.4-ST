@@ -11,12 +11,10 @@ class ball{
   
   
   ball(){
-    pos = new PVector(180, 480);
-    vel = new PVector(3, -1);
+    pos = new PVector(190, 480);
+    vel = new PVector(3, -5);
     siz = 20;
-    
-    // CHANGE THIS LATER
-    active = true;
+    active = false;
   }
   
   void show(){
@@ -29,6 +27,10 @@ class ball{
       }
       if(pos.y < 0){
         vel.y *= -1;
+      }
+      if(pos.y > height){
+        ammo -= 1;
+        active = false;
       }
       pos.x += vel.x;
       pos.y += vel.y; //<>//

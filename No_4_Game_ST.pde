@@ -11,6 +11,8 @@ target[] targ = new target[13];
 PImage Ball;
 PImage BuckSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
+int ammo;
+boolean GameOver;
 
 void setup(){
   size(400, 600);
@@ -50,6 +52,10 @@ void setup(){
   targ[12].pos.x += 160;
   targ[12].pos.y = 20;
   
+  // setting default ammo amount
+  ammo = 5;
+  GameOver = true;
+  
   noStroke();
 }
 
@@ -75,4 +81,36 @@ void draw(){
   }
   orb.show();
   buck.show(); 
+  
+  // for calculating the ball's path, remove later
+  stroke(0);
+  line(map(mouseX, 0, width, 190, 210), map(mouseY, 0, height, 470, 490), 200, 490);
+  stroke(255, 0, 0);
+  line(map(mouseX, 0, width, 190, 210), map(mouseY, 0, height, 470, 490), mouseX, constrain(mouseY, 0, 442));
+  noStroke();
+}
+
+// needs more work
+void mousePressed(){
+  if(orb.active == false && ammo > 0){
+    
+    // both of these should be moved to happening after the active variable for the ball is set to false.
+    orb.pos.x = 190; // resetting x position
+    orb.pos.y = 480; // resetting y position
+    
+    orb.vel.x = map(mouseX, 0, width, -5, 5); // calculating x velocity based on mouse position
+    
+    orb.vel.y = map(mouseY, 0, height, -10, -1); // calculating y velocity based on mouse position
+    
+    orb.active = true;
+  }
+}
+
+// needs more work/remove later
+void keyPressed(){
+  
+  // remove later... maybe
+  if(key == '}'){
+    ammo += 1;
+  }
 }
