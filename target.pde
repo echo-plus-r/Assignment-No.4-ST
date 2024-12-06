@@ -11,7 +11,7 @@ class target{
   float siz;
   
   target(int TargetType){
-    pos = new PVector(10, 10);
+    pos = new PVector(0, 0);
     type = TargetType;
   }
   
@@ -20,6 +20,15 @@ class target{
     switch(type){
       case 1:
         image(TargetWood, pos.x, pos.y);
+        break;
+      case 2:
+        if(frameCount / 25 % 2 == 1){
+          image(TargetSnakeUp, pos.x, pos.y);
+        }
+        else{
+          image(TargetSnakeDown, pos.x, pos.y);
+        }
+        
         break;
     }
   }
