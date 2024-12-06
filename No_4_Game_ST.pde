@@ -63,7 +63,11 @@ void draw(){
   }
   
   for(target i : targ){
-    i.show();
+    
+    // checks that the target is not broken before displaying it
+    if(i.isBroke == false){
+      i.show();
+    }
+    
   }
-  //targ.show();
 }
