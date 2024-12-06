@@ -6,7 +6,9 @@ notes: hello
 */
 
 bucket buck = new bucket();
+ball orb = new ball();
 target[] targ = new target[13];
+PImage Ball;
 PImage BuckSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
 
@@ -14,6 +16,7 @@ void setup(){
   size(400, 600);
   
   //// loading images ////
+  Ball = loadImage("Ball.png");
   BuckSprite = loadImage("bucket-good.png");
   TargetWood = loadImage("Target-Wood-Big.png");
   TargetSnakeUp = loadImage("Target-Snake-Up.png");
@@ -55,8 +58,8 @@ void draw(){
   // functions as the background
   rect(0, 0, width, height);
   
+  orb.move();
   buck.move();
-  buck.show(); 
   
   for(target i : targ){
     i.move();
@@ -70,4 +73,6 @@ void draw(){
     }
     
   }
+  orb.show();
+  buck.show(); 
 }
