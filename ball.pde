@@ -27,6 +27,9 @@ class ball{
       if(pos.x < 0 || pos.x + siz > width){
         vel.x *= -1;
       }
+      if(pos.y < 0){
+        vel.y *= -1;
+      }
       pos.x += vel.x;
       pos.y += vel.y; //<>//
 
