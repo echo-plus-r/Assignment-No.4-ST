@@ -29,7 +29,7 @@ void setup(){
   // defining the wooden targets and setting their position
   for(int i = 0; i < 5; i ++){
     targ[i] = new target(1);
-    targ[i].pos.x += (90 * i); // setting x position
+    targ[i].pos.x += (100 * i); // setting x position
     targ[i].pos.y = 200;
   }
   
