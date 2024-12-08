@@ -9,6 +9,9 @@ class ball{
   // siz holds the ball's width and height (it's 20 for both btw)
   float siz;
   
+  // roundScore holds how many points were gained in a single turn
+  int roundScore;
+  
   
   ball(){
     
@@ -18,6 +21,7 @@ class ball{
     acc = new PVector(0, 0.03);
     siz = 20;
     active = false;
+    roundScore = 0;
   }
   
   // displays the image at the appropriate location
@@ -45,7 +49,11 @@ class ball{
       // checks bottom wall colisions. removes 1 ammo, sets the ball to innactive and reset's the ball's position if it goes below the map
       if(pos.y > height){
         ammo -= 1;
-        active = false;
+        active = false; //<>//
+        if(roundScore > 1000){
+          ammo += 1;
+        }
+        roundScore = 0;
         pos.x = 190 - vel.x;
         pos.y = 480 - vel.y;
       }
@@ -89,6 +97,10 @@ class ball{
    // handles the bucket collisons, gives a ball back, makes the ball innactive, and resets the position if the ball colides with the bucket
    if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < buck.pos.y + siz){
      active = false;
+     if(roundScore > 1000){
+          ammo += 1;
+     }
+     roundScore = 0;
      pos.x = 190;
      pos.y = 480;
    }
