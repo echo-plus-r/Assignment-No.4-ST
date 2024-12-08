@@ -15,6 +15,7 @@ class ball{
     // defining variables
     pos = new PVector(190, 480);
     vel = new PVector(3, -5);
+    acc = new PVector(0, 0.03);
     siz = 20;
     active = false;
   }
@@ -49,8 +50,10 @@ class ball{
       // moving the ball forwards
       pos.x += vel.x;
       pos.y += vel.y; //<>//
-
-      // ADD ACCSELERATION HERE LATER
+      
+      // acceleration
+      vel.x += acc.x;
+      vel.y += acc.y;
     }
   }
   
