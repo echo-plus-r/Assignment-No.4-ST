@@ -40,7 +40,7 @@ class ball{
   }
   void check(target targ){
     
-    // i used this tutorial by happycoding.io to code the following if statement: https://happycoding.io/tutorials/processing/collision-detection
+    // i used this tutorial by happycoding.io to help code the following if statement: https://happycoding.io/tutorials/processing/collision-detection
     if(pos.x + siz + vel.x > targ.pos.x && pos.x + vel.x < targ.pos.x + targ.siz && pos.y + siz > targ.pos.y && pos.y < targ.pos.y + siz){
       targ.isBroke = true;
       switch(targ.type){
@@ -61,6 +61,11 @@ class ball{
           break;
       }
     }
-   //if(pos.y + siz > buck.pos.y && pos.x ){}
+   // i used this tutorial by happycoding.io to help code the following if statement: https://happycoding.io/tutorials/processing/collision-detection
+   if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < targ.pos.y + siz){
+     ammo += 1;
+     active = false;
+     println("POGG");
+   }
   }
 }

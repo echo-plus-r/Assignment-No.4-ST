@@ -55,6 +55,11 @@ class target{
   void move(){
     switch(type){
       case 1:
+      if(pos.x < 0 - siz){
+          pos.x = 400 + siz;
+          isBroke = false;
+        }
+        pos.x -= speed / 2;
         break;
       case 2:
         if(pos.x > 400 + siz){
