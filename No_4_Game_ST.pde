@@ -11,7 +11,7 @@ target[] targ = new target[13];
 PImage Ball;
 PImage BuckSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
-int ammo;
+int ammo, score;
 boolean GameOver;
 
 void setup(){
@@ -72,7 +72,7 @@ void draw(){
   }
   
   for(target i : targ){
-    
+    orb.check(i);
     // checks that the target is not broken before displaying it
     if(i.isBroke == false){
       i.show();
@@ -84,9 +84,9 @@ void draw(){
   
   // for calculating the ball's path, remove later
   stroke(0);
-  line(map(mouseX, 0, width, 190, 210), map(mouseY, 0, height, 470, 490), 200, 490);
+  line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470, 490), 200, 490);
   stroke(255, 0, 0);
-  line(map(mouseX, 0, width, 190, 210), map(mouseY, 0, height, 470, 490), mouseX, constrain(mouseY, 0, 442));
+  //line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470 - 10, 490 - 10), 200, 490);
   noStroke();
 }
 
@@ -100,7 +100,7 @@ void mousePressed(){
     
     orb.vel.x = map(mouseX, 0, width, -5, 5); // calculating x velocity based on mouse position
     
-    orb.vel.y = map(mouseY, 0, height, -10, -1); // calculating y velocity based on mouse position
+    orb.vel.y = map(constrain(mouseY, 0, 479), 0, height, -10, -1); // calculating y velocity based on mouse position
     
     orb.active = true;
   }
@@ -111,6 +111,6 @@ void keyPressed(){
   
   // remove later... maybe
   if(key == '}'){
-    ammo += 1;
+    ammo += 1000000;
   }
 }

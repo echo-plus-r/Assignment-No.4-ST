@@ -38,4 +38,29 @@ class ball{
       // ADD ACCSELERATION HERE LATER
     }
   }
+  void check(target targ){
+    
+    // i used this tutorial by happycoding.io to code the following if statement: https://happycoding.io/tutorials/processing/collision-detection
+    if(pos.x + siz + vel.x > targ.pos.x && pos.x + vel.x < targ.pos.x + targ.siz && pos.y + siz > targ.pos.y && pos.y < targ.pos.y + siz){
+      targ.isBroke = true;
+      switch(targ.type){
+        case(1):
+          score += 50;
+          break;
+        case(2):
+          score += 100;
+          break;
+        case(3):
+          score += 150;
+          break;
+        case(4):
+          score += 500;
+          break;
+        default:
+          println("something has gone wrong ;w;");
+          break;
+      }
+    }
+   //if(pos.y + siz > buck.pos.y && pos.x ){}
+  }
 }
