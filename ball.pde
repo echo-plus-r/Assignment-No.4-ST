@@ -51,7 +51,7 @@ class ball{
         ammo -= 1;
         active = false; //<>//
         if(roundScore > 1000){
-          ammo += 1;
+          ammo += roundScore / 1000;
         }
         roundScore = 0;
         pos.x = 190 - vel.x;
@@ -73,20 +73,24 @@ class ball{
     
     // i used this tutorial by happycoding.io to help code the below if statement: https://happycoding.io/tutorials/processing/collision-detection
     // checks target collisions, adds points baised on target type
-    if(pos.x + siz + vel.x > targ.pos.x && pos.x + vel.x < targ.pos.x + targ.siz && pos.y + siz > targ.pos.y && pos.y < targ.pos.y + siz){
+    if(pos.x + siz + vel.x > targ.pos.x && pos.x + vel.x < targ.pos.x + targ.siz && pos.y + siz > targ.pos.y && pos.y < targ.pos.y + siz && targ.isBroke == false){
       targ.isBroke = true;
       switch(targ.type){
         case(1): // wood target
           score += 50;
+          roundScore += 50;
           break;
         case(2): // snake
           score += 100;
+          roundScore += 100;
           break;
         case(3): // jellyfish
-          score += 150;
+          score += 200;
+          roundScore += 200;
           break;
         case(4): // ufo
           score += 500;
+          roundScore += 500;
           break;
         default: // default statement, used to catch errors
           println("something has gone wrong ;w;");
@@ -98,7 +102,7 @@ class ball{
    if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < buck.pos.y + siz){
      active = false;
      if(roundScore > 1000){
-          ammo += 1;
+          ammo += roundScore / 1000;
      }
      roundScore = 0;
      pos.x = 190;

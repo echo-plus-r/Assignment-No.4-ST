@@ -11,6 +11,7 @@ target[] targ = new target[13];
 PImage Ball;
 PImage BuckSprite;
 PImage AmmoSprite;
+PImage ScoreSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
 int ammo, score;
 boolean GameOver;
@@ -22,6 +23,7 @@ void setup(){
   Ball = loadImage("Ball.png");
   BuckSprite = loadImage("bucket-good.png");
   AmmoSprite = loadImage("ammo-count.png");
+  ScoreSprite = loadImage("score-count-better.png");
   TargetWood = loadImage("Target-Wood-Big.png");
   TargetSnakeUp = loadImage("Target-Snake-Up.png");
   TargetSnakeDown = loadImage("Target-Snake-Down.png");
@@ -32,21 +34,21 @@ void setup(){
   for(int i = 0; i < 5; i ++){
     targ[i] = new target(1);
     targ[i].pos.x += (100 * i); // setting x position
-    targ[i].pos.y = 200;
+    targ[i].pos.y = 280;
   }
   
   // defining the sky snakes and setting their position
   for(int i = 5; i < 9; i++){
     targ[i] = new target(2);
     targ[i].pos.x += (120 * (i - 5));
-    targ[i].pos.y = 140;
+    targ[i].pos.y = 180;
   }
   
   // defining the spase jellyfish and setting their position
   for(int i = 9; i < 12; i++){
     targ[i] = new target(3);
     targ[i].pos.x += (160 * (i - 9)); // setting x position
-    targ[i].pos.y = 80;
+    targ[i].pos.y = 100;
   }
   
   // defining the ufo and setting it's position
@@ -55,10 +57,8 @@ void setup(){
   targ[12].pos.y = 20;
   
   // setting default ammo amount
-  ammo = 10;
+  ammo = 20;
   GameOver = true;
-  
-  textSize(25);
   
   noStroke();
 }
@@ -86,8 +86,14 @@ void draw(){
   
   // displaying the ammo count background
   image(AmmoSprite, 0, 460);
+  textSize(25);
   fill(0);
   text(ammo, 10, 500);
+  
+  // displaying the score background
+  image(ScoreSprite, 300, 460);
+  textSize(15);
+  text(score + "\n" + orb.roundScore, 305, 485);
   fill(255);
   
   orb.show();
