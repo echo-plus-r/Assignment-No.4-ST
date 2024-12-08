@@ -10,6 +10,7 @@ ball orb = new ball();
 target[] targ = new target[13];
 PImage Ball;
 PImage BuckSprite;
+PImage AmmoSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
 int ammo, score;
 boolean GameOver;
@@ -20,6 +21,7 @@ void setup(){
   //// loading images ////
   Ball = loadImage("Ball.png");
   BuckSprite = loadImage("bucket-good.png");
+  AmmoSprite = loadImage("ammo-count.png");
   TargetWood = loadImage("Target-Wood-Big.png");
   TargetSnakeUp = loadImage("Target-Snake-Up.png");
   TargetSnakeDown = loadImage("Target-Snake-Down.png");
@@ -53,8 +55,10 @@ void setup(){
   targ[12].pos.y = 20;
   
   // setting default ammo amount
-  ammo = 5;
+  ammo = 10;
   GameOver = true;
+  
+  textSize(25);
   
   noStroke();
 }
@@ -79,14 +83,19 @@ void draw(){
     }
     
   }
+  
+  // displaying the ammo count background
+  image(AmmoSprite, 0, 460);
+  fill(0);
+  text(ammo, 10, 500);
+  fill(255);
+  
   orb.show();
   buck.show(); 
   
-  // for calculating the ball's path, remove later
+  // shows where the ball will go
   stroke(0);
   line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470, 490), 200, 490);
-  stroke(255, 0, 0);
-  //line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470 - 10, 490 - 10), 200, 490);
   noStroke();
 }
 

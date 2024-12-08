@@ -37,6 +37,9 @@ class ball{
       // checks top wall colisions, reflects y velosity if it colides
       if(pos.y < 0){
         vel.y *= -1;
+        
+        // this is added to try and avoid the ball getting stuck
+        pos.y += 5;
       }
       
       // checks bottom wall colisions. removes 1 ammo, sets the ball to innactive and reset's the ball's position if it goes below the map
@@ -46,10 +49,10 @@ class ball{
         pos.x = 190 - vel.x;
         pos.y = 480 - vel.y;
       }
-      
+       //<>//
       // moving the ball forwards
       pos.x += vel.x;
-      pos.y += vel.y; //<>//
+      pos.y += vel.y; 
       
       // acceleration
       vel.x += acc.x;
@@ -84,8 +87,7 @@ class ball{
     }
    // i used this tutorial by happycoding.io to help code the below if statement: https://happycoding.io/tutorials/processing/collision-detection
    // handles the bucket collisons, gives a ball back, makes the ball innactive, and resets the position if the ball colides with the bucket
-   if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < targ.pos.y + siz){
-     ammo += 1;
+   if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < buck.pos.y + siz){
      active = false;
      pos.x = 190;
      pos.y = 480;
