@@ -2,23 +2,36 @@
 project: object oriented target game
 coder: Simon. T
 date: 2024-12-3
-notes: hello!
+notes: welcome to assignment 4! pro tip, press shift plus '.' for something interesting
 */
 
+
+// defining objects
 bucket buck = new bucket();
 ball orb = new ball();
 target[] targ = new target[13];
+
+// defining images
 PImage Ball;
-PImage BuckSprite;
-PImage AmmoSprite;
-PImage ScoreSprite;
+PImage BuckSprite; // used for bucket
+PImage AmmoSprite; // used for the ammo count background
+PImage ScoreSprite; // used for score background
 PImage title;
 PImage win, lose;
-PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
+PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo; // used for the targets
+
+// ammo holds the amount of ammo the player has
+// score holds the player's score
+// cheatmulti is short for cheat multiplyer and is used for when players press ">"
 int ammo, score, cheatmulti;
+
+// GameOver holds if the game is over or not
 boolean GameOver;
 
+// setup
 void setup(){
+  
+  // defining size
   size(400, 600);
   
   //// loading images ////
@@ -61,15 +74,20 @@ void setup(){
   targ[12].pos.x += 160;
   targ[12].pos.y = 20;
   
-  // setting default ammo amount
-  ammo = 20;
+  // setting the game as over
   GameOver = true;
+  
+  // setting the cheat multiplyer
   cheatmulti = 100;
   
+  // removing stroke
   noStroke();
 }
 
+// draw
 void draw(){
+  
+  // if statement for if the game is over
   if(GameOver == true){
     image(title, 0, 0);
     if(score > 10000){
@@ -79,23 +97,35 @@ void draw(){
       image(lose, 0, 0);
     }
   }
+  
+  // else statement for if the game is not over
   else{
     
+    // checking if the game is over
+    // the game is over if no ball is active and ammo is 0
     if(orb.active == false && ammo == 0){
       GameOver = true;
     }
     
+    // setting background colour
+    fill(175, 169, 212);
     // functions as the background
     rect(0, 0, width, height);
     
+    // moving the ball
     orb.move();
+    
+    // moving the bucket
     buck.move();
     
+    // moving all the targets
     for(target i : targ){
       i.move();
     }
     
+    // checks colisions for every target and the ball, also displays every ball if it's not broken
     for(target i : targ){
+      // checking the colisions between a target and the ball
       orb.check(i);
       // checks that the target is not broken before displaying it
       if(i.isBroke == false){
@@ -106,31 +136,36 @@ void draw(){
     
     // displaying the ammo count background
     image(AmmoSprite, 0, 460);
-    textSize(25);
-    fill(0);
-    text(ammo, 10, 500);
+    textSize(25); // setting the text size
+    fill(0); // setting the text colour
+    text(ammo, 10, 500); // displaying the text
     
     // displaying the score background
     image(ScoreSprite, 300, 460);
-    textSize(15);
-    text(score + "\n" + orb.roundScore, 305, 485);
-    fill(255);
+    textSize(15); // setting the text size
+    text(score + "\n" + orb.roundScore, 305, 485); // displaying the text
+    fill(255); // i don't know if this actually does anything, but i'm too scared to remove it :(
     
+    // displaying the ball
     orb.show();
+    
+    // display the bucket
     buck.show(); 
     
     // shows where the ball will go
-    stroke(0);
+    stroke(0); // setting the stroke colour
+    // drawing the line
     line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470, 490), 200, 490);
-    noStroke();
+    noStroke(); // removing the stroke
   }
 }
 
-// needs more work
+// mouse pressed, controlls where the ball is shot
 void mousePressed(){
+  
+  // checking if the ball can be fired
   if(orb.active == false && ammo > 0 && GameOver == false){
-    
-    // both of these should be moved to happening after the active variable for the ball is set to false.
+
     orb.pos.x = 190; // resetting x position
     orb.pos.y = 480; // resetting y position
     
@@ -138,20 +173,29 @@ void mousePressed(){
     
     orb.vel.y = map(constrain(mouseY, 0, 479), 0, height, -10, -1); // calculating y velocity based on mouse position
     
+    // setting the ball to active
     orb.active = true;
+  }
+  
+  // starting the game if it is over and the user clicks
+  if(GameOver == true){
+    GameOver = false; // setting the game to not over
+    ammo = 20; // resetting ammo
+    score = 0; // resetting score
   }
 }
 
-// needs more work/remove later
+// this is used to start the game and for weird cheats
 void keyPressed(){
   
+  // starts the game if it's over
   if(GameOver == true){
-    GameOver = false;
-    ammo = 200;
-    score = 0;
+    GameOver = false; // setting the game to not over
+    ammo = 20; // resetting ammo
+    score = 0; // resetting score
   }
   
-  // remove later... maybe
+  // cheat that grants 1,000,000 ammo
   if(key == '}'){
     ammo += 1000000;
   }

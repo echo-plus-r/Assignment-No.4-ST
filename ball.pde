@@ -54,10 +54,9 @@ class ball{
           ammo += roundScore / 1000;
         }
         roundScore = 0;
-        pos.x = 190 - vel.x;
+        pos.x = 190 - vel.x; // resetting the ball's position
         pos.y = 480 - vel.y;
       }
-       //<>//
       // moving the ball forwards
       pos.x += vel.x;
       pos.y += vel.y; 
@@ -104,9 +103,9 @@ class ball{
      if(roundScore >= 1000){
           ammo += roundScore / 1000;
      }
-     roundScore = 0;
-     pos.x = 190;
-     pos.y = 480;
+     roundScore = 0; // resetting round score
+     pos.x = 190; // resetting x position
+     pos.y = 480; // resetting y position
    }
   }
 }

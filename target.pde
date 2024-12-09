@@ -25,26 +25,30 @@ class target{
   // show displays the target
   void show(){
     switch(type){
-      case 1:
+      case 1: // wooden target
         image(TargetWood, pos.x, pos.y);
         break;
-      case 2:
+      case 2: // snake
+        
+        // displays the upwards snake sprite if the remainder of the frame count devided by 25 then devided by 2 is 1
         if(frameCount / 25 % 2 == 1){
           image(TargetSnakeUp, pos.x, pos.y);
         }
+        
+        // displaying the downwards snake sprite if the outcome of the above equasion is not 1
         else{
           image(TargetSnakeDown, pos.x, pos.y);
         }
         
         break;
         
-        case 3:
+        case 3: // jellyfish
           image(TargetJelly, pos.x, pos.y);
           break;
-        case 4:
+        case 4: // ufo
           image(TargetUfo, pos.x, pos.y);
           break;
-        default:
+        default: // default statement to catch errors
           println("something has gone terribly wrong =w=");
           break;
     }
@@ -54,14 +58,14 @@ class target{
   // it also checks if the target is off screen, and resets the target's position if it is.
   void move(){
     switch(type){
-      case 1:
+      case 1: // wooden target
       if(pos.x < 0 - siz){
           pos.x = 400 + siz;
           isBroke = false;
         }
         pos.x -= speed / 2;
         break;
-      case 2:
+      case 2: // snake
         if(pos.x > 400 + siz){
           pos.x = siz * -1;
           isBroke = false;
@@ -69,14 +73,14 @@ class target{
         pos.x += speed;
         break;
         
-        case 3:
+        case 3: // jellyfish
         if(pos.x < 0 - siz){
           pos.x = 400 + siz;
           isBroke = false;
         }
           pos.x -= speed;
           break;
-        case 4:
+        case 4: // ufo
           if(pos.x > 400 + siz){
             pos.x = siz * -1;
             isBroke = false;
@@ -84,7 +88,7 @@ class target{
           pos.x += speed;
           pos.y += sin(frameCount / 5);
           break;
-        default:
+        default: // default statement to catch errors
           println("something has gone terribly wrong (TwT)");
           break;
     }
