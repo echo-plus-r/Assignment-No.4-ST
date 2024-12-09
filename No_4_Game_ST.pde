@@ -12,6 +12,8 @@ PImage Ball;
 PImage BuckSprite;
 PImage AmmoSprite;
 PImage ScoreSprite;
+PImage title;
+PImage win, lose;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
 int ammo, score, cheatmulti;
 boolean GameOver;
@@ -24,6 +26,9 @@ void setup(){
   BuckSprite = loadImage("big-bucket.png");
   AmmoSprite = loadImage("ammo-count.png");
   ScoreSprite = loadImage("score-count-better.png");
+  title = loadImage("title screen.png");
+  win = loadImage("victory.png");
+  lose = loadImage("game-over.png");
   TargetWood = loadImage("Target-Wood-Big.png");
   TargetSnakeUp = loadImage("Target-Snake-Up.png");
   TargetSnakeDown = loadImage("Target-Snake-Down.png");
@@ -66,9 +71,19 @@ void setup(){
 
 void draw(){
   if(GameOver == true){
-    text("THIS IS THE TITLE SCREEN :3", 200, 200);
+    image(title, 0, 0);
+    if(score > 10000){
+      image(win, 0, 0);
+    }
+    else if(score > 0 && score <= 10000){
+      image(lose, 0, 0);
+    }
   }
   else{
+    
+    if(orb.active == false && ammo == 0){
+      GameOver = true;
+    }
     
     // functions as the background
     rect(0, 0, width, height);
@@ -113,7 +128,7 @@ void draw(){
 
 // needs more work
 void mousePressed(){
-  if(orb.active == false && ammo > 0){
+  if(orb.active == false && ammo > 0 && GameOver == false){
     
     // both of these should be moved to happening after the active variable for the ball is set to false.
     orb.pos.x = 190; // resetting x position
@@ -132,6 +147,8 @@ void keyPressed(){
   
   if(GameOver == true){
     GameOver = false;
+    ammo = 200;
+    score = 0;
   }
   
   // remove later... maybe
