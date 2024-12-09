@@ -50,7 +50,7 @@ class ball{
       if(pos.y > height){
         ammo -= 1;
         active = false; //<>//
-        if(roundScore > 1000){
+        if(roundScore >= 1000){
           ammo += roundScore / 1000;
         }
         roundScore = 0;
@@ -99,10 +99,12 @@ class ball{
     }
    // i used this tutorial by happycoding.io to help code the below if statement: https://happycoding.io/tutorials/processing/collision-detection
    // handles the bucket collisons, gives a ball back, makes the ball innactive, and resets the position if the ball colides with the bucket
-   if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.BuckWidth && pos.y + siz > buck.pos.y && pos.y < buck.pos.y + siz){
+   if(pos.x + siz > buck.pos.x && pos.x + vel.x < buck.pos.x + buck.size.x && pos.y + siz > buck.pos.y && pos.y < buck.pos.y + siz){
+     println("BUCKET!!");
      active = false;
-     if(roundScore > 1000){
+     if(roundScore >= 1000){
           ammo += roundScore / 1000;
+          println("extra ball");
      }
      roundScore = 0;
      pos.x = 190;

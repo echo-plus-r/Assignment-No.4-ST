@@ -1,10 +1,8 @@
 class bucket{
 
   // pos holds the bucket's x and y position
-  PVector pos;
-  
-  // Buck Width holds the width of the bucket, which is 25. this is a variable for collision calculatioins that will be added later
-  float BuckWidth;
+  // size holds the dimentions of the bucket (60, 40)
+  PVector pos, size;
   
   // speed holds how far the bucket will move each frame
   float speed;
@@ -17,7 +15,7 @@ class bucket{
     
     // defining variables
     pos = new PVector(0, 550);
-    BuckWidth = 25;
+    size = new PVector(60, 40);
     moveLeft = false;
     speed = 1;
   }
@@ -40,7 +38,7 @@ class bucket{
     }
     
     // checking if the bucket has hit the right edge of the screen
-    if(pos.x > width - BuckWidth){
+    if(pos.x > width - size.x){
       moveLeft = true; // switching to moving the bucket left
     }
     

@@ -13,7 +13,7 @@ PImage BuckSprite;
 PImage AmmoSprite;
 PImage ScoreSprite;
 PImage TargetWood, TargetSnakeUp, TargetSnakeDown, TargetJelly, TargetUfo;
-int ammo, score;
+int ammo, score, cheatmulti;
 boolean GameOver;
 
 void setup(){
@@ -21,7 +21,7 @@ void setup(){
   
   //// loading images ////
   Ball = loadImage("Ball.png");
-  BuckSprite = loadImage("bucket-good.png");
+  BuckSprite = loadImage("big-bucket.png");
   AmmoSprite = loadImage("ammo-count.png");
   ScoreSprite = loadImage("score-count-better.png");
   TargetWood = loadImage("Target-Wood-Big.png");
@@ -59,50 +59,56 @@ void setup(){
   // setting default ammo amount
   ammo = 20;
   GameOver = true;
+  cheatmulti = 100;
   
   noStroke();
 }
 
 void draw(){
-  
-  // functions as the background
-  rect(0, 0, width, height);
-  
-  orb.move();
-  buck.move();
-  
-  for(target i : targ){
-    i.move();
+  if(GameOver == true){
+    text("THIS IS THE TITLE SCREEN :3", 200, 200);
   }
-  
-  for(target i : targ){
-    orb.check(i);
-    // checks that the target is not broken before displaying it
-    if(i.isBroke == false){
-      i.show();
+  else{
+    
+    // functions as the background
+    rect(0, 0, width, height);
+    
+    orb.move();
+    buck.move();
+    
+    for(target i : targ){
+      i.move();
     }
     
+    for(target i : targ){
+      orb.check(i);
+      // checks that the target is not broken before displaying it
+      if(i.isBroke == false){
+        i.show();
+      }
+      
+    }
+    
+    // displaying the ammo count background
+    image(AmmoSprite, 0, 460);
+    textSize(25);
+    fill(0);
+    text(ammo, 10, 500);
+    
+    // displaying the score background
+    image(ScoreSprite, 300, 460);
+    textSize(15);
+    text(score + "\n" + orb.roundScore, 305, 485);
+    fill(255);
+    
+    orb.show();
+    buck.show(); 
+    
+    // shows where the ball will go
+    stroke(0);
+    line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470, 490), 200, 490);
+    noStroke();
   }
-  
-  // displaying the ammo count background
-  image(AmmoSprite, 0, 460);
-  textSize(25);
-  fill(0);
-  text(ammo, 10, 500);
-  
-  // displaying the score background
-  image(ScoreSprite, 300, 460);
-  textSize(15);
-  text(score + "\n" + orb.roundScore, 305, 485);
-  fill(255);
-  
-  orb.show();
-  buck.show(); 
-  
-  // shows where the ball will go
-  stroke(0);
-  line(map(mouseX, 0, width, 190, 210), map(constrain(mouseY, 0, 479), 0, height, 470, 490), 200, 490);
-  noStroke();
 }
 
 // needs more work
@@ -124,8 +130,107 @@ void mousePressed(){
 // needs more work/remove later
 void keyPressed(){
   
+  if(GameOver == true){
+    GameOver = false;
+  }
+  
   // remove later... maybe
   if(key == '}'){
     ammo += 1000000;
   }
+  
+  // cheat that multiplies a random user defined variable by what the cheat multiplyer is set as (1000 normally)
+  if(key == '>'){
+    switch(round(random(21))){
+      case(1):
+        ammo *= cheatmulti;
+        println("ammo times " + cheatmulti);
+        break;
+      case(2):
+        score *= cheatmulti;
+        println("score times " + cheatmulti);
+        break;
+      case(3):
+        orb.pos.x *= cheatmulti;
+        println("ball x position times " + cheatmulti);
+        break;
+      case(4):
+        orb.pos.y *= cheatmulti;
+        println("ball y position times " + cheatmulti);
+        break;
+      case(5):
+        orb.vel.x *= cheatmulti;
+        println("ball x velocity times " + cheatmulti);
+        break;
+      case(6):
+        orb.vel.y *= cheatmulti;
+        println("ball y velocity times " + cheatmulti);
+        break;
+      case(7):
+        orb.acc.x *= cheatmulti;
+        println("ball x acceleration times " + cheatmulti);
+        break;
+      case(8):
+        orb.acc.y *= cheatmulti;
+        println("ball y acceleration times " + cheatmulti);
+        break;
+      case(9):
+        orb.siz *= cheatmulti;
+        println("ball size times " + cheatmulti);
+        break;
+      case(10):
+        orb.roundScore *= cheatmulti;
+        println("round score times " + cheatmulti);
+        break;
+      case(11):
+        buck.pos.x *= cheatmulti;
+        println("bucket x position times " + cheatmulti);
+        break;
+      case(12):
+        buck.pos.y *= cheatmulti;
+        println("bucket y position times " + cheatmulti);
+        break;
+      case(13):
+        buck.size.x *= cheatmulti;
+        println("bucket width times " + cheatmulti);
+        break;
+      case(14):
+        buck.size.y *= cheatmulti;
+        println("bucket height times " + cheatmulti);
+        break;
+      case(15):
+        buck.speed *= cheatmulti;
+        println("bucket speed times "  + cheatmulti);
+        break;
+      case(16):
+        targ[round(random(12))].type *= cheatmulti;
+        println("random target type times "  + cheatmulti);
+        break;
+      case(17):
+        targ[round(random(12))].pos.x *= cheatmulti;
+        println("random target x position times "  + cheatmulti);
+        break;
+      case(18):
+        targ[round(random(12))].pos.y *= cheatmulti;
+        println("random target y position times "  + cheatmulti);
+        break;
+      case(19):
+        targ[round(random(12))].siz *= cheatmulti;
+        println("random target size times "  + cheatmulti);
+        break;  
+      case(20):
+        targ[round(random(12))].speed *= cheatmulti;
+        println("random target speed times "  + cheatmulti);
+        break;
+      case(21):
+        cheatmulti *= cheatmulti; // CHEAT MULTI SQUARED?!
+        println("cheat multiplyer times " + cheatmulti);
+        break;
+      default:
+        println("MISSFIRE?!");
+        break;
+      
+    }
+  }
+  
 }
